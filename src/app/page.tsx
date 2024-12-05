@@ -1,12 +1,9 @@
+import calculateUserInputs from "@/lib/actions/calculateUserInputs";
+
 export default function Home() {
   return (
     <div>
-      <form
-        action={
-          () => {} // TODO Define Action
-        }
-        id="background"
-        name="user_background">
+      <form action={calculateUserInputs} id="background" name="user_background">
         <br />
 
         <label htmlFor="age">How old are you?</label>
