@@ -140,7 +140,7 @@ const calculateScore = (
       value: getGravidaFactor(formula, gravida as Pregnancies),
     },
     {
-      condition: true,
+      condition: liveBirth,
       value: getBirthFactor(formula, liveBirth as Pregnancies),
     },
   ];

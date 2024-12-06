@@ -1,6 +1,11 @@
+"use client";
+
 import calculateUserInputs from "@/lib/actions/calculateUserInputs";
+import { useState } from "react";
 
 export default function Home() {
+  const [gravida, setGravida] = useState("0"); // Tracks the selected gravida value
+
   return (
     <div>
       <form action={calculateUserInputs} id="background" name="user_background">
@@ -90,6 +95,8 @@ export default function Home() {
           id="gravida"
           name="user_gravida"
           className="border-2 w-full"
+          value={gravida}
+          onChange={(e) => setGravida(e.target.value)}
           required>
           <option value="invalid" disabled>
             -- select an option --
@@ -102,22 +109,30 @@ export default function Home() {
         <br />
         <br />
 
-        <label htmlFor="live_births">How many prior births have you had?</label>
-        <select
-          id="live_births"
-          name="user_live_births"
-          className="border-2 w-full"
-          required>
-          <option disabled value="invalid">
-            -- select an option --
-          </option>
-          <option value="0">None</option>
-          <option value="1">1</option>
-          <option value="2+">2 or more</option>
-        </select>
+        {gravida !== "0" && (
+          <>
+            <label htmlFor="live_births">
+              How many prior births have you had?
+            </label>
+            <select
+              id="live_births"
+              name="user_live_births"
+              className="border-2 w-full"
+              required>
+              <option disabled value="invalid">
+                -- select an option --
+              </option>
+              <option value="0">None</option>
+              <option value="1">1</option>
+              <option value="2+" disabled={gravida !== "2+"}>
+                2 or more
+              </option>
+            </select>
 
-        <br />
-        <br />
+            <br />
+            <br />
+          </>
+        )}
 
         <fieldset>
           <legend>
